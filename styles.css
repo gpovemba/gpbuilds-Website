@@ -465,8 +465,70 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   border-bottom-color: #fff;
 }
 
+/* === PROJECT VISUALS === */
+.project-shot {
+  display: block;
+  width: 100%;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0b0b14;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: box-shadow 0.3s;
+}
+.project-card:hover .project-shot { box-shadow: 0 14px 40px rgba(139, 92, 255, 0.25); }
+.shot-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 10px;
+  background: #12121e;
+  border-bottom: 1px solid var(--border);
+}
+.shot-bar i { width: 8px; height: 8px; border-radius: 50%; background: #2a2a3d; }
+.shot-url { margin-left: 8px; font-size: 11px; color: var(--text-faint); letter-spacing: 0.2px; }
+.project-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top left;
+}
+.shot-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  aspect-ratio: 16 / 10;
+  background:
+    radial-gradient(120% 90% at 25% 15%, rgba(139, 92, 255, 0.22), transparent 60%),
+    linear-gradient(160deg, #141424, #0a0a12);
+}
+.shot-placeholder strong { font-size: 26px; font-weight: 500; color: #fff; letter-spacing: -0.3px; }
+.shot-placeholder span { font-size: 13px; color: var(--text-dim); }
+
+.modal-content figure { margin: 0; }
+.modal-content .case-shot { margin: 18px 0 16px; }
+.modal-content figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  transition: opacity 0.15s, border-color 0.15s;
+}
+.modal-content figure a:hover img { border-color: var(--accent); }
+.modal-content figcaption { font-size: 13px; color: var(--text-faint); margin-top: 8px; line-height: 1.5; }
+.modal-content .case-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.modal-content .case-note { font-size: 12.5px; color: var(--text-faint); margin-top: 10px; }
+
 /* === RESPONSIVE === */
 @media (max-width: 640px) {
+  .modal-content .case-gallery { grid-template-columns: 1fr; }
   .nav { padding: 14px 20px; }
   .nav-links { gap: 18px; }
   .nav-links a { font-size: 13px; }

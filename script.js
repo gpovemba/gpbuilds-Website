@@ -56,6 +56,23 @@ const projects = {
         </a>
       </p>
 
+      <figure class="case-shot">
+        <a href="images/roofing-quote.webp" target="_blank" rel="noopener">
+          <img src="images/roofing-quote.webp" width="1600" height="1000" loading="lazy"
+               alt="A generated roofing quote with line items, and a private panel showing cost, profit, and margin" />
+        </a>
+        <figcaption>A generated quote. The customer sees the branded estimate; cost, profit, and margin stay in the private side panel.</figcaption>
+      </figure>
+      <div class="case-gallery">
+        <figure><a href="images/roofing-builder.webp" target="_blank" rel="noopener"><img src="images/roofing-builder.webp" width="1600" height="1000" loading="lazy" alt="Quote builder step two: roofing material cards and scope checklist" /></a>
+          <figcaption>Materials and scope, from the contractor's own products.</figcaption></figure>
+        <figure><a href="images/roofing-dashboard.webp" target="_blank" rel="noopener"><img src="images/roofing-dashboard.webp" width="1600" height="1000" loading="lazy" alt="Dashboard with pipeline value, win rate, and recent quotes" /></a>
+          <figcaption>Dashboard with pipeline and win rate.</figcaption></figure>
+        <figure><a href="images/roofing-docs.webp" target="_blank" rel="noopener"><img src="images/roofing-docs.webp" width="1600" height="1000" loading="lazy" alt="Document search returning the decking replacement policy for a customer question" /></a>
+          <figcaption>Document search the AI reads before writing notes.</figcaption></figure>
+      </div>
+      <p class="case-note">Screens show sample data. Click any image to view it full size.</p>
+
       <h3>The Problem</h3>
       <p>
         Roofing contractors lose evenings to estimates. Each one means measuring the roof,
