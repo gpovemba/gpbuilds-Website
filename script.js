@@ -162,6 +162,14 @@ const projects = {
         </a>
       </p>
 
+      <figure class="case-shot">
+        <a href="https://www.tempusnow.net/" target="_blank" rel="noopener">
+          <img src="images/tempus-home.webp" width="1600" height="803" loading="lazy"
+               alt="Tempus LLC homepage: headline, owner and direct phone number, estimate buttons, and a featured backyard project" />
+        </a>
+        <figcaption>The homepage: a clear promise, the owner's name and direct line up front, and a featured project as proof.</figcaption>
+      </figure>
+
       <h3>The Problem</h3>
       <p>
         A general contracting business needed a real web presence — one that does the

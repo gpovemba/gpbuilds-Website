@@ -497,20 +497,6 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   object-fit: cover;
   object-position: top left;
 }
-.shot-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  aspect-ratio: 16 / 10;
-  background:
-    radial-gradient(120% 90% at 25% 15%, rgba(139, 92, 255, 0.22), transparent 60%),
-    linear-gradient(160deg, #141424, #0a0a12);
-}
-.shot-placeholder strong { font-size: 26px; font-weight: 500; color: #fff; letter-spacing: -0.3px; }
-.shot-placeholder span { font-size: 13px; color: var(--text-dim); }
-
 .modal-content figure { margin: 0; }
 .modal-content .case-shot { margin: 18px 0 16px; }
 .modal-content figure img {
