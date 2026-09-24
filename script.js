@@ -46,132 +46,91 @@ document.getElementById('year').textContent = new Date().getFullYear();
 // === Project case studies ===
 const projects = {
   roofing: {
-    tag: 'Case Study · AI · Two-Tier Pricing',
+    tag: 'Case Study · AI · RAG · Estimating',
     title: 'Roofing Quote Bot',
-    sub: "The estimating assistant that knows when <em>not</em> to spend your money.",
+    sub: "An estimating tool that quotes with the contractor's real numbers and real terms.",
     body: `
+      <p>
+        <a href="https://github.com/gpovemba/roofing-quote-bot" target="_blank" rel="noopener" class="case-link">
+          View the code on GitHub →
+        </a>
+      </p>
+
       <h3>The Problem</h3>
       <p>
-        Roofing companies need to quote fast — but the gold-standard measurement service
-        (EagleView) costs around <strong>$10 per report</strong>. Run that on every cold lead
-        and the marketing spend bleeds out before a single deal closes. Owners are stuck
-        choosing between slow quotes and burned margins.
+        Roofing contractors lose evenings to estimates. Each one means measuring the roof,
+        working out bundles, underlayment, drip edge, and ridge cap, adding labor, tear-off,
+        dumpsters, and permits, then writing it up for the homeowner. Generic estimating
+        tools don't help much: they price with industry averages instead of what this
+        contractor actually pays, and they can't answer the questions homeowners ask next,
+        like what the warranty covers or what happens if the decking is rotted.
       </p>
 
       <h3>The Solution</h3>
       <p>
-        A two-tier estimating bot that protects the operator's wallet by gating the paid
-        step behind real lead qualification. The workflow looks like this:
+        A guided, three-step quote builder backed by the contractor's own data:
       </p>
       <ul>
         <li>
-          <strong>Tier 1 — Free pre-quote (always runs).</strong> The owner drops in an
-          address and job basics. The bot pulls a free Google Solar measurement, infers
-          roof area and pitch, runs them through a pricing engine, and returns a
-          <strong>price range</strong> (±15%) — not a fake-precise number.
+          <strong>Project details.</strong> Enter the customer and address, then one click
+          pulls roof measurements (area, pitch, facets, and edge lengths) from EagleView.
         </li>
         <li>
-          <strong>The Qualification Gate.</strong> Before spending a dollar, the bot
-          conducts a short qualifying conversation: timeline, budget range, decision-maker
-          present. Wishy-washy answers ("they seem interested") <em>do not</em> pass —
-          only an explicit, qualified confirmation unlocks the next tier.
+          <strong>Materials &amp; scope.</strong> Pick the roofing system and grade from the
+          contractor's own product list, toggle scope items, and add optional work like
+          gutters, skylight flashing, or decking replacement.
         </li>
         <li>
-          <strong>Tier 2 — Contract-grade quote (only on confirmed leads).</strong> A real
-          EagleView report is pulled, the estimate is re-priced on verified measurements,
-          and a defensible contract number is saved to history.
+          <strong>Review &amp; generate.</strong> The tool builds a line-item quote and Claude
+          writes the project overview and customer notes, drawing only on the company's
+          uploaded documents.
         </li>
       </ul>
+      <p>
+        From there the contractor can edit any line, adjust margins for the job, track the
+        quote as draft, sent, won, or lost, and send it as a branded PDF. An AI assistant
+        can also build quotes and answer policy questions in plain conversation.
+      </p>
 
       <h3>How It Works Under the Hood</h3>
       <p>
-        A FastAPI backend orchestrates the flow: a measurement layer (Google Solar →
-        EagleView), a pricing engine that computes labor + materials + a transparent
-        margin, an LLM-driven qualification module that interprets free-text answers
-        without letting vague replies through, and a SQLite history of every quote with
-        its tier and confirmation state.
+        <strong>Pricing from a business profile.</strong> Each contractor enters their
+        suppliers, product costs, crew rates, pitch add-ons, local dumpster and permit costs,
+        overhead, and markup once. The calculator turns measurements into a real material
+        order: shingles by the bundle, drip edge from eave and rake length, ridge cap from
+        ridge length, dumpsters from tear-off volume. When a measurement source doesn't
+        return edge lengths, they're estimated from roof area and the affected lines are
+        flagged. The customer sees marked-up unit prices that add up exactly to the total,
+        while costs and margin stay private.
+      </p>
+      <p>
+        <strong>Retrieval-augmented notes.</strong> Warranties, price policies, and supplier
+        sheets (PDF, Word, or text) are split into section-aware passages. Search combines
+        BM25 keyword ranking with optional Voyage AI embeddings, merged with reciprocal rank
+        fusion. For each quote, the tool retrieves passages about the relevant warranty,
+        inclusions, and likely extras, and Claude writes notes from those passages only. If
+        the documents don't cover something, it says nothing rather than inventing terms.
+      </p>
+      <p>
+        <strong>Design choice:</strong> prices never come from retrieval. Exact numbers live
+        in structured data the calculator reads directly; retrieval handles the messy text
+        around them. A search that picks the wrong line in a price sheet would ruin a quote,
+        so the two are kept separate.
       </p>
 
       <h3>The Value It Creates</h3>
       <ul>
-        <li><strong>Protected margin:</strong> $10 is only spent on qualified, confirmed jobs — not on tire-kickers.</li>
-        <li><strong>Faster lead response:</strong> every prospect gets a defensible pre-quote in seconds.</li>
-        <li><strong>Better calibration:</strong> the contract step regularly <em>corrects</em> the estimate (one demo run went 2,350 → 2,180 sqft, 3:12 → 7:12 pitch), proving the second tier earns its cost.</li>
-        <li><strong>Operator trust:</strong> the bot never quietly spends money — every paid call has explicit consent behind it.</li>
+        <li><strong>Quotes in minutes:</strong> address to a priced, sendable estimate without a spreadsheet.</li>
+        <li><strong>The contractor's real margins:</strong> every price comes from their own costs and markup, not industry averages.</li>
+        <li><strong>Grounded customer notes:</strong> warranty and policy language comes from the company's documents, so the AI can't promise terms the business doesn't offer.</li>
+        <li><strong>Professional output:</strong> itemized, branded quotes that match what homeowners expect from an established contractor.</li>
       </ul>
 
       <h3>Stack</h3>
       <div class="stack">
         <span>Python</span><span>FastAPI</span><span>SQLite</span>
-        <span>Google Solar API</span><span>EagleView</span><span>LLM Qualification Layer</span>
-        <span>Vanilla JS Demo UI</span>
-      </div>
-    `,
-  },
-  tutor: {
-    tag: 'Case Study · AI · EdTech',
-    title: 'Tutor Co-Pilot',
-    sub: 'A planning tool for independent tutors — from idea to session plan in seconds.',
-    body: `
-      <h3>The Problem</h3>
-      <p>
-        Independent tutors spend hours every week on the unglamorous half of the job:
-        planning sessions, adapting material to each student's level and interests, and
-        keeping track of what they tried last time. It's the part that doesn't scale —
-        and the part that quietly determines whether the student keeps coming back.
-      </p>
-
-      <h3>The Solution</h3>
-      <p>
-        Tutor Co-Pilot turns a <strong>student profile</strong> plus a <strong>one-line
-        idea</strong> ("introduce derivatives via a velocity problem") into a structured,
-        four-section session plan ready to teach — in seconds, not an hour.
-      </p>
-      <ul>
-        <li>
-          <strong>Roster &amp; profiles.</strong> Each student has a profile: level,
-          goals, interests, learning style notes. New students added with a focused form.
-        </li>
-        <li>
-          <strong>Idea Spark.</strong> The tutor types a quick prompt for the session.
-          The app combines that with the profile and asks Claude to produce a plan
-          tailored to <em>this</em> student — not a generic template.
-        </li>
-        <li>
-          <strong>Draft view.</strong> A four-section session plan: warm-up, core
-          concept, guided practice, independent challenge — formatted so the tutor can
-          walk into the lesson and teach from it.
-        </li>
-      </ul>
-
-      <h3>How It Works Under the Hood</h3>
-      <p>
-        React 18 + Vite frontend with a clean component split (Roster, Profile, Idea
-        Spark, Draft views). The browser <em>never</em> talks to the Anthropic API
-        directly — instead it hits <code>/api/anthropic/v1/messages</code>, a Vite dev
-        proxy that injects the API key server-side. This keeps the key out of the
-        client bundle entirely (the key lives in <code>.env.local</code>, gitignored)
-        and lets the same client work locally and in production behind a real proxy.
-      </p>
-      <p>
-        Prompt design is a focused module: the student profile is rendered into a
-        structured system prompt that anchors Claude's output to the right level,
-        interests, and prior context. The current model is <strong>Claude Sonnet 4.6</strong> —
-        chosen for the balance of reasoning quality and latency on a real-time planning loop.
-      </p>
-
-      <h3>The Value It Creates</h3>
-      <ul>
-        <li><strong>Hours back per week.</strong> The planning step that used to cost 30–60 minutes per student becomes a 30-second loop.</li>
-        <li><strong>Personalization at scale.</strong> Every plan is grounded in the actual student — not a recycled worksheet.</li>
-        <li><strong>Lower mental load.</strong> The tutor brings the judgment; the tool brings the structure.</li>
-        <li><strong>Foundation for more.</strong> Architected for a Phase 2 roadmap (Material Tweaker, Live Session nudges, Post-Session Notes, Progress Log) — same backbone, more leverage.</li>
-      </ul>
-
-      <h3>Stack</h3>
-      <div class="stack">
-        <span>React 18</span><span>Vite</span><span>Anthropic API</span>
-        <span>Claude Sonnet 4.6</span><span>Secure Server-Side Proxy</span><span>Plain CSS</span>
+        <span>Claude (tool use)</span><span>RAG · BM25 + Voyage embeddings</span>
+        <span>EagleView</span><span>Vanilla JS</span>
       </div>
     `,
   },
