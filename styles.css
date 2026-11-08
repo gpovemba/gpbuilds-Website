@@ -635,6 +635,34 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 }
 
 
+/* Keep the featured UGC player compact without cutting off the video.
+   Instagram's native iframe remains interactive, just at a smaller visual scale. */
+.creative-showcase-featured {
+  align-self: start;
+  padding: 24px;
+}
+.creative-showcase-featured .creative-showcase-heading {
+  margin-bottom: 14px;
+}
+.creative-showcase-featured .creative-embed {
+  width: min(100%, 340px);
+  margin-inline: auto;
+}
+.creative-showcase-featured .creative-embed .instagram-media,
+.creative-showcase-featured .creative-embed iframe {
+  max-width: 340px !important;
+}
+.creative-showcase-featured .creative-embed iframe {
+  zoom: 0.85;
+}
+.creative-showcase-featured .creative-instagram-link {
+  align-self: center;
+  margin-top: 14px;
+}
+@media (max-width: 640px) {
+  .creative-showcase-featured { padding: 14px; }
+}
+
 /* More AI creative examples */
 .creative-more { margin-top: 64px; }
 .creative-more-head { text-align: center; margin: 0 auto 30px; max-width: 650px; }
