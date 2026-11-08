@@ -92,26 +92,10 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   font-family: 'Geist', sans-serif;
   font-weight: 600;
   font-size: 22px;
-  letter-spacing: -1.4px;
+  letter-spacing: -0.9px;
   color: var(--text);
   line-height: 1;
-  padding-right: 8px;
-}
-.logo-mark .logo-dot {
-  position: absolute;
-  right: 0;
-  bottom: 2px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 8px var(--accent-glow);
-}
-.brand-name {
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--text-dim);
-  letter-spacing: 0.1px;
+  padding-right: 0;
 }
 .nav-links { display: flex; gap: 32px; }
 .nav-links a {
