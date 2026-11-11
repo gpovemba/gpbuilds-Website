@@ -84,7 +84,11 @@ body:has(.lightbox[open]) { overflow: hidden; }
 .original-link { min-height: 44px; display: inline-flex; align-items: center; }
 @media (min-width: 1700px) { .editorial { padding-left: 36px; } .work-panel { padding-right: 24px; } .gallery, .gallery-column { gap: 12px; } }
 @media (max-width: 1100px) and (min-width: 901px) { .editorial { padding-inline: 22px; } .intro-copy { font-size: 17px; } .work-heading > span { font-size: 9px; } }
+.mobile-label { display: none; }
 @media (max-width: 900px) {
+  .decorative-arrow, .desktop-arrow { display: none; }
+  .mobile-label { display: inline; }
+  .lightbox-stage button { font-size: 12px; min-width: 80px; }
   .layout { display: flex; flex-direction: column; height: auto; overflow: visible; }
   .editorial { display: contents; }
   .site-header, .intro, .studio, .contact, .footer { margin-inline: 24px; }
