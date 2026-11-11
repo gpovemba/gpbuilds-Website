@@ -46,16 +46,3 @@ if (typeof lightbox.showModal === 'function') {
   // Native dialog supplies focus trapping and Escape-to-close behavior.
   lightbox.addEventListener('close', () => returnFocus?.focus({ preventScroll: true }));
 }
-
-// Keep third-party video requests out of the initial image-led experience.
-document.querySelectorAll('.load-video').forEach((button) => {
-  button.addEventListener('click', () => {
-    const container = button.closest('.instagram-embed');
-    const frame = document.createElement('iframe');
-    frame.src = `${container.dataset.instagramUrl}embed/`;
-    frame.title = `${container.closest('article').querySelector('h3').textContent} on Instagram`;
-    frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
-    frame.allowFullscreen = true;
-    container.replaceChildren(frame);
-  });
-});
